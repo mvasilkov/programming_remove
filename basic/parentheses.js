@@ -29,7 +29,9 @@ function balanced(a) {
 if (require.main == module) {
     const assert = require('assert')
 
-    assert(balanced('({[]})') == true)
+    assert(balanced('[()]{}{[()()]()}') == true)
+    assert(balanced('[(])') == false)
+
     assert(balanced('{[]()}') == true)
     assert(balanced('{[](}}') == false)
     assert(balanced('{[]([)}') == false)
