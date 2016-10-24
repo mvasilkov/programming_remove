@@ -48,17 +48,17 @@ function sum4(array, x) {
     const copy = array.slice()
     copy.sort((a, b) => a - b)
 
-    const partial = {}
+    const partial = new Map
     for (let i = 0; i < copy.length - 1; ++i) {
         for (let j = i + 1; j < copy.length; ++j) {
-            partial[copy[i] + copy[j]] = new Set([i, j])
+            partial.set(copy[i] + copy[j], new Set([i, j]))
         }
     }
 
     for (let i = 0; i < copy.length - 1; ++i) {
         for (let j = i + 1; j < copy.length; ++j) {
             const sum = copy[i] + copy[j]
-            const p = partial[x - sum]
+            const p = partial.get(x - sum)
 
             if (p && !p.has(i) && !p.has(j))
                 return true
